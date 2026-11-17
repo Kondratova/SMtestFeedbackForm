@@ -1,7 +1,6 @@
 <?php
 
-/**
- * I belong to a file
+/**  * I belong to a file
  */
 
 namespace App\Acme;

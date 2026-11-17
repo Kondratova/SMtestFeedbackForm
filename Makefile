@@ -47,7 +47,8 @@ composer-up:
 	@docker run --rm -v $(shell pwd)/web/app:/app composer update
 
 docker-start: init
-	docker-compose up -d
+	@docker-compose up -d
+	@cat init.sql | docker exec -i mysql sh -c 'MYSQL_PWD="$MYSQL_PASSWORD" exec mysql -u"$MYSQL_USER" "$MYSQL_DATABASE"'
 
 docker-stop:
 	@docker-compose down -v
