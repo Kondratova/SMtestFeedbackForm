@@ -27,3 +27,6 @@ nbproject/
 
 # SSL Certs
 etc/ssl/
+
+# Logs
+var/
