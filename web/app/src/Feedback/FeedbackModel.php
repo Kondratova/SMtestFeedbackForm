@@ -1,19 +1,24 @@
 <?php
 
-namespace App\Acme\Core;
+declare(strict_types=1);
+
+namespace App\Acme\Feedback;
 
 use App\Acme\Core\Model;
 use PDO;
 
 final class FeedbackModel extends Model
 {
-    public function getAll(): array
+    public function getByEmail(string $email): array
     {
-        $stmt = $this->db->query(
+        $stmt = $this->db->prepare(
             'SELECT id, full_name, email, message, created_at
-             FROM feedback
-             ORDER BY created_at DESC'
+         FROM feedback
+         WHERE email = :email
+         ORDER BY created_at DESC'
         );
+
+        $stmt->execute([':email' => $email]);
 
         return $stmt->fetchAll();
     }

@@ -23,7 +23,18 @@ final class Database
     public static function getInstance(): PDO
     {
         if (self::$instance === null) {
-            self::$instance = self::createConnection(Config::fromEnv());
+            try {
+                $config = Config::fromEnv();
+                self::$instance = self::createConnection($config);
+            } catch (MissingDatabaseCredentialsException | PDOException $e) {
+                Logger::getInstance()->exception($e);
+
+                throw new PDOException(
+                    'Database connection failed: ' . $e->getMessage(),
+                    (int) $e->getCode(),
+                    $e,
+                );
+            }
         }
 
         return self::$instance;

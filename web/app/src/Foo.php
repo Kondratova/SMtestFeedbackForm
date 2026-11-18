@@ -5,6 +5,8 @@
 
 namespace App\Acme;
 
+use App\Acme\Feedback\FeedbackController;
+
 /**
  * I belong to a class
  */
@@ -15,6 +17,9 @@ class Foo
      */
     public function getName()
     {
+        $feedbackController = new FeedbackController();
+        $feedbackController->index();
+
         return 'Nginx PHP MySQL';
     }
 }

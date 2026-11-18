@@ -1,15 +1,13 @@
 <?php
 
-include '../app/vendor/autoload.php';
-$foo = new App\Acme\Foo();
+declare(strict_types=1);
 
-?><!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>Docker <?php echo $foo->getName(); ?></title>
-    </head>
-    <body>
-        <h1>Docker <?php echo $foo->getName(); ?></h1>
-    </body>
-</html>
+include '../app/vendor/autoload.php';
+
+//use App\Acme\Core\Database;
+use App\Acme\Core\Router;
+
+// Гарантируем наличие таблицы feedback до обработки запроса
+//Database::getInstance();
+$router = new Router();
+$router->dispatch($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);

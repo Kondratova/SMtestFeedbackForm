@@ -41,16 +41,17 @@ final class Config
     /**
      * Создаёт конфигурацию из переменных окружения.
      *
+     * @throws MissingDatabaseCredentialsException Если хотя бы одна обязательная переменная не задана.
      * @throws Exception Если хотя бы одна обязательная переменная не задана.
      */
     public static function fromEnv(): self
     {
         $requiredVars = [
-            'DB_HOST',
-            'DB_PORT',
-            'DB_DATABASE',
-            'DB_USERNAME',
-            'DB_PASSWORD',
+            'MYSQL_HOST',
+            'MYSQL_PORT',
+            'MYSQL_DATABASE',
+            'MYSQL_USER',
+            'MYSQL_PASSWORD',
         ];
 
         $values = [];
@@ -75,11 +76,11 @@ final class Config
         }
 
         return new self(
-            host: $values['DB_HOST'],
-            port: $values['DB_PORT'],
-            database: $values['DB_DATABASE'],
-            username: $values['DB_USERNAME'],
-            password: $values['DB_PASSWORD'],
+            host: $values['MYSQL_HOST'],
+            port: $values['MYSQL_PORT'],
+            database: $values['MYSQL_DATABASE'],
+            username: $values['MYSQL_USER'],
+            password: $values['MYSQL_PASSWORD'],
             charset: 'utf8mb4',
         );
     }
