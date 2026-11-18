@@ -69,11 +69,9 @@ $isRequired = static fn(string $field): bool => in_array($field, $requiredFields
         </form>
     </section>
 
-    <section class="messages-section">
+    <section class="messages-section" id="messages-section" hidden>
         <h2>Ранее отправленные сообщения</h2>
-        <div id="messages-list" class="messages-list">
-            <p class="no-messages">Загрузка...</p>
-        </div>
+        <div id="messages-list" class="messages-list"></div>
     </section>
 </main>
 

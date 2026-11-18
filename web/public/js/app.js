@@ -3,6 +3,7 @@ class FeedbackApp {
         this.form = document.getElementById('feedback-form');
         this.statusDiv = document.getElementById('form-status');
         this.messagesList = document.getElementById('messages-list');
+        this.messagesSection = document.getElementById('messages-section');
         this.submitButton = this.form.querySelector('.btn-submit');
 
         // Список обязательных полей приходит с сервера
@@ -120,10 +121,12 @@ class FeedbackApp {
 
     renderMessages(messages) {
         if (!messages.length) {
-            this.messagesList.innerHTML = '<p class="no-messages">Пока нет сообщений.</p>';
+            this.messagesList.innerHTML = '';
+            this.messagesSection.hidden = true;
             return;
         }
 
+        this.messagesSection.hidden = false;
         this.messagesList.innerHTML = messages.map((msg) => `
             <article class="message-card">
                 <header class="message-header">

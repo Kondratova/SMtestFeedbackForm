@@ -63,7 +63,7 @@ final class FeedbackController
 
         if (!$this->validator->isValid()) {
             Response::error(
-                array_values($this->validator->getErrors()),
+                ['Сообщения для данного email не найены.'],
                 422,
                 ['fields' => $this->validator->getErrors()],
             )->send();
